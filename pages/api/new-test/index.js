@@ -86,7 +86,10 @@ export default async function handler(req, res) {
           questions: updatedQuestions,
           questionCount: updatedQuestions.length,
           difficulty: "medium", 
-          
+          totalMarks: updatedQuestions.length,
+          timeLimit: 60,
+          createdAt: new Date(),
+
         });
 
         await newTest.save();

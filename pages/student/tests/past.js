@@ -58,11 +58,11 @@ export default function StudentTests() {
       {/* شريط التنقل */}
       <nav className="bg-blue-600 text-white shadow-md py-4">
         <div className="container mx-auto flex justify-between items-center px-6">
-          <Link>
+          <Link href="/">
           <h1 className="text-xl font-bold">منصة تعليم الصف الرابع الابتدائي</h1>
           </Link>
           <div className="flex space-x-4">
-            <Link href="/student/tests/past" className="hover:text-gray-200">
+            <Link href="/student/tests" className="hover:text-gray-200">
             الاختبات المتاحه 
             </Link>
 

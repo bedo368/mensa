@@ -39,11 +39,11 @@ export default function AvailableTests() {
       {/* Navbar */}
       <nav className="bg-blue-600 text-white shadow-md py-4">
         <div className="container mx-auto flex justify-between items-center px-6">
-          <h1 className="text-xl font-bold">منصتنا التفاعلية</h1>
+          <Link>
+          <h1 className="text-xl font-bold">منصة تعليم الصف الرابع الابتدائي</h1>
+          </Link>
           <div className="flex space-x-4">
-            <Link href="/" className="hover:text-gray-200">
-              الصفحة الرئيسية
-            </Link>
+           
             <Link href="/student/tests/past" className="hover:text-gray-200">
               الاختبارات السابقه 
             </Link>

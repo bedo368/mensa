@@ -31,9 +31,9 @@ const router = useRouter(); // Initialize the router
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-200 to-blue-500">
+    <div className="min-h-screen bg-gradient-to-b from-blue-200 to-blue-500 py-8 px-4 ">
       {/* Navbar */}
-      <nav className="bg-white shadow-md sticky top-0 z-50">
+      <nav className="bg-white shadow-md sticky top-0 z-1">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
           {/* Logo */}
           <h1 className="text-2xl font-extrabold text-blue-600">
@@ -59,30 +59,8 @@ const router = useRouter(); // Initialize the router
               </>
             ) : (
               <>
-                {user.type === "Student" && (
-                  <>
-                    <Link
-                      href="/student/tests/past"
-                      className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
-                    >
-                      الاختبارات السابقة
-                    </Link>
-                    <Link
-                      href="/student/tests"
-                      className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
-                    >
-                      الاختبارات الحالية
-                    </Link>
-                  </>
-                )}
-                {user.type === "admin" && (
-                  <Link
-                    href="/admin/dashboard"
-                    className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition"
-                  >
-                    لوحة التحكم
-                  </Link>
-                )}
+                
+              
                 <div className="relative">
                   <button
                     onClick={() => setMenuOpen(!menuOpen)}
@@ -104,16 +82,7 @@ const router = useRouter(); // Initialize the router
                       />
                     </svg>
                   </button>
-                  {menuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2">
-                      <button
-                        onClick={handleLogout}
-                        className="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
-                      >
-                        تسجيل الخروج
-                      </button>
-                    </div>
-                  )}
+                 
                 </div>
               </>
             )}
@@ -144,9 +113,9 @@ const router = useRouter(); // Initialize the router
         </div>
 
         {/* Mobile Menu */}
-        {menuOpen && (
+        {(menuOpen && !user) && (
           <div className="lg:hidden bg-white shadow-md">
-            {!user ? (
+            {!user && (
               <div className="flex flex-col space-y-2 p-4">
                 <Link
                   href="/login"
@@ -161,40 +130,7 @@ const router = useRouter(); // Initialize the router
                   التسجيل
                 </Link>
               </div>
-            ) : (
-              <div className="flex flex-col space-y-2 p-4">
-                {user.type === "Student" && (
-                  <>
-                    <Link
-                      href="/student/tests/past"
-                      className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
-                    >
-                      الاختبارات السابقة
-                    </Link>
-                    <Link
-                      href="/student/tests/available"
-                      className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition"
-                    >
-                      الاختبارات الحالية
-                    </Link>
-                  </>
-                )}
-                {user.type === "admin" && (
-                  <Link
-                    href="/admin/dashboard"
-                    className="px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition"
-                  >
-                    لوحة التحكم
-                  </Link>
-                )}
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
-                >
-                  تسجيل الخروج
-                </button>
-              </div>
-            )}
+            ) }
           </div>
         )}
 

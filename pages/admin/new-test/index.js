@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function NewTest() {
   const [title, setTitle] = useState("");
@@ -89,8 +90,18 @@ export default function NewTest() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 py-8 px-4" dir="rtl">
-      <style jsx>{`
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-300">
+      {/* Navbar */}
+      <nav className="bg-white text-white shadow-md py-6">
+        <div className="container mx-auto flex justify-between items-center px-6">
+          <h1 className="text-2xl font-extrabold text-blue-600">
+            <Link href="/">منصة تعليم الصف الرابع الابتدائي</Link>
+          </h1>
+        </div>
+      </nav>
+      <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-300 py-8 px-4" dir="rtl">
+
+        <style jsx>{`
         input, textarea {
           color: #333;
           font-size: 16px;
@@ -102,134 +113,135 @@ export default function NewTest() {
           color: #000;
         }
       `}</style>
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6">إنشاء اختبار جديد</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">عنوان الاختبار</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="أدخل عنوان الاختبار"
-              required
-            />
-          </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">وصف الاختبار</label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-              placeholder="أدخل وصفًا للاختبار"
-              rows="4"
-              required
-            ></textarea>
-          </div>
+        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold text-gray-800 mb-6">إنشاء اختبار جديد</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-gray-700 font-bold mb-2">عنوان الاختبار</label>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                placeholder="أدخل عنوان الاختبار"
+                required
+              />
+            </div>
 
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-700 mb-4">الأسئلة</h2>
-            {questions.map((question, qIndex) => (
-              <div
-                key={qIndex}
-                className="mb-6 border p-4 rounded-lg shadow-sm bg-gray-50 space-y-4"
-              >
-                <div>
-                  <label className="block text-gray-700 font-bold mb-2">
-                    السؤال {qIndex + 1}
-                  </label>
-                  <textarea
-                    value={question.question}
-                    onChange={(e) =>
-                      handleQuestionChange(qIndex, "question", e.target.value)
-                    }
-                    className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-                    placeholder="أدخل نص السؤال"
-                    rows="3"
-                    required
-                  />
-                </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 font-bold mb-2">وصف الاختبار</label>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                placeholder="أدخل وصفًا للاختبار"
+                rows="4"
+                required
+              ></textarea>
+            </div>
 
-                <div>
-                  <h3 className="text-lg font-bold text-gray-700 mb-2">الخيارات</h3>
-                  {question.options.map((option, oIndex) => (
-                    <div key={oIndex} className="mb-2 flex items-center space-x-2">
-                      <span className="text-gray-600">{oIndex + 1}.</span>
-                      <input
-                        type="text"
-                        value={option}
-                        onChange={(e) =>
-                          handleOptionChange(qIndex, oIndex, e.target.value)
-                        }
-                        className="flex-1 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-                        placeholder={`الخيار ${oIndex + 1}`}
-                        required
-                      />
-                    </div>
-                  ))}
-                </div>
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-700 mb-4">الأسئلة</h2>
+              {questions.map((question, qIndex) => (
+                <div
+                  key={qIndex}
+                  className="mb-6 border p-4 rounded-lg shadow-sm bg-gray-50 space-y-4"
+                >
+                  <div>
+                    <label className="block text-gray-700 font-bold mb-2">
+                      السؤال {qIndex + 1}
+                    </label>
+                    <textarea
+                      value={question.question}
+                      onChange={(e) =>
+                        handleQuestionChange(qIndex, "question", e.target.value)
+                      }
+                      className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                      placeholder="أدخل نص السؤال"
+                      rows="3"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-gray-700 font-bold mb-2">
-                    الإجابة الصحيحة
-                  </label>
-                  <select
-                    value={question.correctAnswer}
-                    onChange={(e) =>
-                      handleQuestionChange(qIndex, "correctAnswer", e.target.value)
-                    }
-                    className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-                    required
-                  >
-                    {question.options.map((_, oIndex) => (
-                      <option key={oIndex} value={oIndex}>
-                        الخيار {oIndex + 1}
-                      </option>
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-700 mb-2">الخيارات</h3>
+                    {question.options.map((option, oIndex) => (
+                      <div key={oIndex} className="mb-2 flex items-center space-x-2">
+                        <span className="text-gray-600">{oIndex + 1}.</span>
+                        <input
+                          type="text"
+                          value={option}
+                          onChange={(e) =>
+                            handleOptionChange(qIndex, oIndex, e.target.value)
+                          }
+                          className="flex-1 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                          placeholder={`الخيار ${oIndex + 1}`}
+                          required
+                        />
+                      </div>
                     ))}
-                  </select>
-                </div>
+                  </div>
 
-                <div>
-                  <label className="block text-gray-700 font-bold mb-2">
-                    صورة للسؤال (اختياري)
-                  </label>
-                  <input
-                    type="file"
-                    onChange={(e) => handleImageUpload(qIndex, e.target.files[0])}
-                    className="block w-full text-gray-600"
-                  />
-                  {question.image && question.image instanceof File && (
-                    <span className="text-sm text-gray-500">
-                      {question.image.name} تم اختيار الملف
-                    </span>
-                  )}
+                  <div>
+                    <label className="block text-gray-700 font-bold mb-2">
+                      الإجابة الصحيحة
+                    </label>
+                    <select
+                      value={question.correctAnswer}
+                      onChange={(e) =>
+                        handleQuestionChange(qIndex, "correctAnswer", e.target.value)
+                      }
+                      className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                      required
+                    >
+                      {question.options.map((_, oIndex) => (
+                        <option key={oIndex} value={oIndex}>
+                          الخيار {oIndex + 1}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-700 font-bold mb-2">
+                      صورة للسؤال (اختياري)
+                    </label>
+                    <input
+                      type="file"
+                      onChange={(e) => handleImageUpload(qIndex, e.target.files[0])}
+                      className="block w-full text-gray-600"
+                    />
+                    {question.image && question.image instanceof File && (
+                      <span className="text-sm text-gray-500">
+                        {question.image.name} تم اختيار الملف
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+
+              <button
+                type="button"
+                onClick={handleAddQuestion}
+                className="px-6 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
+              >
+                إضافة سؤال
+              </button>
+            </div>
 
             <button
-              type="button"
-              onClick={handleAddQuestion}
-              className="px-6 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
+              type="submit"
+              className={`px-6 py-3 rounded-lg shadow w-full transition ${loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600 text-white"
+                }`}
+              disabled={loading}
             >
-              إضافة سؤال
+              {loading ? "جارٍ الإنشاء..." : "إنشاء الاختبار"}
             </button>
-          </div>
-
-          <button
-            type="submit"
-            className={`px-6 py-3 rounded-lg shadow w-full transition ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-blue-600 text-white"
-            }`}
-            disabled={loading}
-          >
-            {loading ? "جارٍ الإنشاء..." : "إنشاء الاختبار"}
-          </button>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

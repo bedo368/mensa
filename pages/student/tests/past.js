@@ -19,7 +19,6 @@ export default function StudentTests() {
       try {
         // Decode the token to extract the studentId
         const decodedToken = jwtDecode.decode(token);
-        console.log(decodedToken);
         const studentId = decodedToken.id; // Replace `id` with the exact key in your token
 
         if (!studentId) {
@@ -54,19 +53,13 @@ export default function StudentTests() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
+    <div className="min-h-screen bg-gradient-to-b from-purple-200 to-purple-400 px-4 py-8">
       {/* شريط التنقل */}
-      <nav className="bg-blue-600 text-white shadow-md py-4">
+      <nav className="bg-white shadow-md py-6">
         <div className="container mx-auto flex justify-between items-center px-6">
-          <Link href="/">
-          <h1 className="text-xl font-bold">منصة تعليم الصف الرابع الابتدائي</h1>
-          </Link>
-          <div className="flex space-x-4">
-            <Link href="/student/tests" className="hover:text-gray-200">
-            الاختبار المتاحه 
-            </Link>
-
-          </div>
+          <h1 className="text-2xl font-extrabold text-blue-600">
+            <Link href="/">منصة تعليم الصف الرابع الابتدائي</Link>
+          </h1>
         </div>
       </nav>
 
@@ -90,6 +83,9 @@ export default function StudentTests() {
                     <th className="text-center p-4 border-b border-gray-200 w-1/4">
                       التاريخ
                     </th>
+                    <th className="text-center p-4 border-b border-gray-200 w-1/4">
+                      المتفوقون
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -106,6 +102,14 @@ export default function StudentTests() {
                       </td>
                       <td className="text-center p-4 text-black">
                         {new Date(test.createdAt).toLocaleDateString("ar-EG")}
+                      </td>
+                      <td className="text-center p-4">
+                        <Link
+                          href={`/top-students/${test.testId?._id}`}
+                          className="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition text-sm"
+                        >
+                          عرض المتفوقين
+                        </Link>
                       </td>
                     </tr>
                   ))}

@@ -59,12 +59,12 @@ export default function Register() {
   }, [isRegistered]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-white to-blue-100">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-purple-200 to-purple-400 py-8 px-4">
       {/* Header */}
-      <header className="bg-blue-600 text-white py-4 shadow-md">
+      <header className="bg-white text-white py-4 shadow-md">
         <div className="container mx-auto px-6 flex justify-between items-center">
           <Link href="/" >
-          <h1 className="text-xl font-bold">منصة تعليم الصف الرابع الابتدائي</h1>
+          <h1 className="text-xl font-bold" style={{color: "#3b82f6"}} >منصة تعليم الصف الرابع الابتدائي</h1>
           </Link>
           <Link
             href="/login"

@@ -35,19 +35,13 @@ export default function AvailableTests() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
+    <div className="min-h-screen bg-gradient-to-b from-purple-200 to-purple-400 py-8 px-4 ">
       {/* Navbar */}
-      <nav className="bg-blue-600 text-white shadow-md py-4">
+      <nav className="bg-white text-white shadow-md py-6">
         <div className="container mx-auto flex justify-between items-center px-6">
-          <Link href="/">
-          <h1 className="text-xl font-bold">منصة تعليم الصف الرابع الابتدائي</h1>
-          </Link>
-          <div className="flex space-x-4">
-           
-            <Link href="/student/tests/past" className="hover:text-gray-200">
-              الاختبارات السابقه 
-            </Link>
-          </div>
+        <h1 className="text-2xl font-extrabold text-blue-600">
+            <Link href="/">منصة تعليم الصف الرابع الابتدائي</Link>
+          </h1>          
         </div>
       </nav>
 
@@ -59,20 +53,32 @@ export default function AvailableTests() {
         {tests.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tests.map((test) => (
-              <Link key={test._id} href={`/test/${test._id}`}>
-                <div className="bg-white shadow-md rounded-lg p-6 hover:shadow-xl hover:scale-105 transition transform cursor-pointer">
-                  <h2 className="text-xl font-bold text-gray-800 mb-2">{test.title}</h2>
-                  <p className="text-gray-600">{test.description}</p>
-                  <div className="mt-4">
-                    <p className="text-sm text-gray-500">
-                      عدد الأسئلة: {test.questions.length}
-                    </p>
-                  </div>
-                  <div className="mt-4 text-right">
-                    <span className="text-blue-500 font-semibold">ابدأ الاختبار →</span>
-                  </div>
+              <div
+                key={test._id}
+                className="bg-white shadow-md rounded-lg p-6 hover:shadow-xl hover:scale-105 transition transform"
+              >
+                <h2 className="text-xl font-bold text-gray-800 mb-2">
+                  {test.title}
+                </h2>
+                <p className="text-gray-600">{test.description}</p>
+                <div className="mt-4">
+                  <p className="text-sm text-gray-500">
+                    عدد الأسئلة: {test.questions.length}
+                  </p>
                 </div>
-              </Link>
+                <div className="mt-4 flex justify-between items-center">
+                  <Link href={`/test/${test._id}`}>
+                    <span className="text-blue-500 font-semibold cursor-pointer">
+                      ابدأ الاختبار →
+                    </span>
+                  </Link>
+                  <Link href={`/top-students/${test._id}`}>
+                    <button className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition">
+                      الطلاب المتفوقون
+                    </button>
+                  </Link>
+                </div>
+              </div>
             ))}
           </div>
         ) : (

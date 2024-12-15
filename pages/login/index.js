@@ -40,12 +40,12 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-white to-blue-100">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-purple-200 to-purple-400 py-8 px-4">
       {/* Header */}
-      <header className="bg-blue-600 text-white py-4 shadow-md">
+      <header className="bg-white text-white py-4 shadow-md">
         <div className="container mx-auto px-6 flex justify-between items-center">
           <Link href='/' >
-            <h1 className="text-xl font-bold">منصة تعليم الصف الرابع الابتدائي</h1>
+            <h1 className="text-xl font-bold" style={{color: "#1d4ed8"}}>منصة تعليم الصف الرابع الابتدائي</h1>
           </Link>
          
           <Link
@@ -98,11 +98,7 @@ export default function Login() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-4">
-        <div className="container mx-auto text-center">
-          <p className="text-sm">© 2024 منصة تعليم الصف الرابع الابتدائي. جميع الحقوق محفوظة.</p>
-        </div>
-      </footer>
+      
     </div>
   );
 }

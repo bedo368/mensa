@@ -1,28 +1,54 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router"; // لإعادة التوجيه
+import jwtDecode from "jsonwebtoken"; // فك التوكن
 
 export default function Dashboard() {
   const [tests, setTests] = useState([]);
   const [loading, setLoading] = useState(true);
-  const router = useRouter(); // إعداد التوجيه
+  const [isAdmin, setIsAdmin] = useState(false); // للتحقق من الصلاحيات
+  const router = useRouter();
+
+  // التحقق من التوكن والصلاحيات
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode.decode(token);
+
+        if (decodedToken?.type === "admin") {
+          setIsAdmin(true);
+        } else {
+          // إعادة التوجيه إذا لم يكن المستخدم أدمن
+          router.push("/");
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        router.push("/"); // إعادة التوجيه في حالة الخطأ
+      }
+    } else {
+      router.push("/"); // إعادة التوجيه إذا لم يوجد توكن
+    }
+  }, [router]);
 
   // جلب البيانات عند تحميل الصفحة
   useEffect(() => {
-    const fetchTests = async () => {
-      try {
-        const response = await fetch("/api/tests"); // افترض وجود API لجلب الاختبارات
-        const data = await response.json();
-        setTests(data);
-      } catch (error) {
-        console.error("Error fetching tests:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTests();
-  }, []);
+    if (isAdmin) {
+      const fetchTests = async () => {
+        try {
+          const response = await fetch("/api/tests"); // افترض وجود API لجلب الاختبارات
+          const data = await response.json();
+          setTests(data);
+        } catch (error) {
+          console.error("Error fetching tests:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchTests();
+    }
+  }, [isAdmin]);
 
   // وظيفة لحذف الاختبار
   const deleteTest = async (id) => {
@@ -34,7 +60,6 @@ export default function Dashboard() {
         const data = await response.json();
 
         if (response.ok) {
-          // تحديث الحالة بعد الحذف
           setTests((prevTests) => prevTests.filter((test) => test._id !== id));
           alert("تم حذف الاختبار بنجاح");
         } else {
@@ -47,28 +72,19 @@ export default function Dashboard() {
     }
   };
 
-  // وظيفة فتح صفحة "Top Students" للامتحان
+  // وظيفة فتح صفحة "Top Students"
   const navigateToTopStudents = (testId) => {
-    router.push(`/top-students/${testId}`); // التوجيه إلى صفحة Top Students
+    router.push(`/top-students/${testId}`);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-300">
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-300 py-8 px-4">
       {/* Navbar */}
-      <nav className="bg-blue-600 text-white shadow-md py-4">
+      <nav className="bg-white text-white shadow-md py-4">
         <div className="container mx-auto flex justify-between items-center px-6">
-          <h1 className="text-xl font-bold">منصة تعليم الصف الرابع الابتدائي</h1>
-          <div className="flex space-x-4">
-            <Link href="/" className="hover:text-gray-200">
-              الصفحة الرئيسية
-            </Link>
-            <div className="mx-5">
-
-            <Link href="/admin/dashboard" className="hover:text-gray-200">
-            </Link>
-            </div>
-              لوحة التحكم
-          </div>
+        <h1 className="text-2xl font-extrabold text-blue-600">
+            <Link href="/">منصة تعليم الصف الرابع الابتدائي</Link>
+          </h1>          
         </div>
       </nav>
 
@@ -111,7 +127,7 @@ export default function Dashboard() {
                   <tr
                     key={test._id}
                     className="text-center border-b hover:bg-gray-100 cursor-pointer"
-                    onClick={() => navigateToTopStudents(test._id)} // التوجيه عند النقر على الصف
+                    onClick={() => navigateToTopStudents(test._id)}
                   >
                     <td className="py-2 border">{test._id}</td>
                     <td className="py-2 border">{test.title}</td>
@@ -120,7 +136,7 @@ export default function Dashboard() {
                       <button
                         className="text-red-500 underline hover:text-red-700"
                         onClick={(e) => {
-                          e.stopPropagation(); // منع فتح صفحة Top Students عند النقر على زر الحذف
+                          e.stopPropagation();
                           deleteTest(test._id);
                         }}
                       >

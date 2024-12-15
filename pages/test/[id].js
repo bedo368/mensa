@@ -122,10 +122,10 @@ export default function StudentTest() {
           </p>
           <p className="text-lg text-gray-600 mt-2">{result.message}</p>
           
-          <Link href="/admin/dashboard">
+          <Link href="/">
           <div className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4">
 
-              العودة إلى لوحة التحكم
+              العودة إلى لوحة الصفحه الرئيسية
           </div>
           </Link>
         </div>

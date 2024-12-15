@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import jwtDecode from "jsonwebtoken";
+import { useRouter } from "next/router";
+
 
 export default function Home() {
+const router = useRouter(); // Initialize the router
+
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   console.log(user)
@@ -21,7 +25,9 @@ export default function Home() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    
     setUser(null);
+    router.push("/login");
   };
 
   return (

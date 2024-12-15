@@ -1,39 +1,37 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import jwtDecode from "jsonwebtoken"; // Import the jwt-decode library
+import jwtDecode from "jsonwebtoken"; // استيراد مكتبة jwt-decode
 
 export default function StudentTest() {
   const router = useRouter();
-  const { id } = router.query; // Get the test ID from the URL
+  const { id } = router.query; // الحصول على معرف الاختبار من الـ URL
   const [test, setTest] = useState(null);
   const [answers, setAnswers] = useState({});
-  const [currentQuestion, setCurrentQuestion] = useState(0); // To track the current question
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [result, setResult] = useState(null); // Store the test result after submission
-  const [studentId, setStudentId] = useState(null); // Store the extracted student ID
+  const [result, setResult] = useState(null);
+  const [studentId, setStudentId] = useState(null);
 
-  // Fetch the student ID from localStorage
+  // استخراج معرف الطالب من التوكن
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Assume the JWT is stored under 'token'
+    const token = localStorage.getItem("token");
     if (token) {
       try {
-        const decodedToken = jwtDecode.decode(token); // Decode the token
-        setStudentId(decodedToken.id); // Extract the student ID
-        console.log(decodedToken);
+        const decodedToken = jwtDecode.decode(token);
+        setStudentId(decodedToken.id);
       } catch (error) {
-        console.error("Invalid token:", error);
-        alert("Invalid token. Please log in again.");
-        router.push("/login"); // Redirect to login if the token is invalid
+        alert("توكن غير صالح. الرجاء تسجيل الدخول مرة أخرى.");
+        router.push("/login");
       }
     } else {
-      alert("You are not logged in.");
-      router.push("/login"); // Redirect to login if no token is found
+      alert("الرجاء تسجيل الدخول.");
+      router.push("/login");
     }
   }, [router]);
 
-  // Fetch the test data
+  // جلب بيانات الاختبار
   useEffect(() => {
     if (id) {
       const fetchTest = async () => {
@@ -44,49 +42,40 @@ export default function StudentTest() {
             setTest(data);
             setLoading(false);
           } else {
-            alert("Failed to fetch the test");
+            alert("فشل في جلب بيانات الاختبار");
             setLoading(false);
           }
         } catch (error) {
-          console.error("Error fetching test:", error);
           setLoading(false);
         }
       };
-
       fetchTest();
     }
   }, [id]);
 
-  // Handle answer selection
+  // اختيار الإجابة
   const handleAnswerChange = (selectedOption) => {
     setAnswers({ ...answers, [currentQuestion]: selectedOption });
   };
 
-  // Navigate to the next question
+  // الانتقال للسؤال التالي
   const handleNext = () => {
     if (currentQuestion < test.questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     }
   };
 
-  // Navigate to the previous question
+  // الانتقال للسؤال السابق
   const handlePrevious = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
     }
   };
 
-  // Submit the test
+  // إرسال الاختبار
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (Object.keys(answers).length !== test.questions.length) {
-      alert("Please answer all the questions.");
-      return;
-    }
-
     setSubmitting(true);
-
     try {
       const response = await fetch("/api/submit-test", {
         method: "POST",
@@ -95,7 +84,7 @@ export default function StudentTest() {
         },
         body: JSON.stringify({
           testId: id,
-          studentId, // Use the extracted student ID
+          studentId,
           answers,
         }),
       });
@@ -105,171 +94,124 @@ export default function StudentTest() {
         setResult({
           totalScore: data.totalScore,
           maxScore: data.maxScore,
-          message: data.message,
+          message: data.message || "تم إرسال الاختبار بنجاح!",
         });
       } else {
-        const errorData = await response.json();
-        alert(`Submission error: ${errorData.error}`);
+        alert("فشل في إرسال الاختبار.");
       }
     } catch (error) {
-      console.error("Error submitting test:", error);
-      alert("Submission failed. Please try again.");
+      alert("حدث خطأ. حاول مرة أخرى.");
     } finally {
       setSubmitting(false);
     }
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Loading test...</p>
-      </div>
-    );
-  }
-
-  if (!test) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p>Test not found.</p>
-      </div>
-    );
-  }
-
-  // Calculate progress percentage based on answered questions
-  const answeredQuestions = Object.keys(answers).length;
-  const progressPercentage = (answeredQuestions / test.questions.length) * 100;
+  if (loading) return <p>جارٍ تحميل الاختبار...</p>;
+  if (!test) return <p>الاختبار غير موجود.</p>;
 
   const question = test.questions[currentQuestion];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-blue-300">
-      {/* Navbar */}
-      <nav className="bg-blue-600 text-white shadow-md py-4">
-        <div className="container mx-auto flex justify-between items-center px-6">
-          <h1 className="text-xl font-bold">منصة تعليم الصف الرابع الابتدائي</h1>
-          <div className="flex space-x-4">
-            <Link href="/" className="hover:text-gray-200">
-              الصفحة الرئيسية
-            </Link>
-            <Link href="/student/dashboard" className="hover:text-gray-200">
-              لوحة التحكم
-            </Link>
+    <div className="min-h-screen bg-gradient-to-b from-purple-200 to-purple-400 flex flex-col items-center justify-center p-4">
+      {/* إذا كانت النتيجة موجودة، يتم عرض النتيجة */}
+      {result ? (
+        <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+          <h2 className="text-3xl font-bold text-green-500 mb-4">نتيجة الاختبار</h2>
+          <p className="text-2xl font-semibold text-gray-800">
+            درجتك: {result.totalScore} / {result.maxScore}
+          </p>
+          <p className="text-lg text-gray-600 mt-2">{result.message}</p>
+          
+          <Link href="/admin/dashboard">
+          <div className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4">
+
+              العودة إلى لوحة التحكم
           </div>
+          </Link>
         </div>
-      </nav>
+      ) : (
+        <>
+          {/* عنوان الاختبار */}
+          <h1 className="text-3xl font-bold text-white mb-6">{test.title}</h1>
 
-      {/* Main Content */}
-      <div className="container mx-auto py-8 px-6">
-        {/* Title and Description */}
-        <div className="bg-white p-6 rounded-lg shadow-lg mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">{test.title}</h1>
-          <p className="text-gray-700">{test.description}</p>
-        </div>
+          {/* مربع السؤال */}
+          <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg text-center mb-8">
+            {/* نص السؤال */}
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              {currentQuestion + 1}. {question.question}
+            </h2>
 
-        {/* Progress Bar */}
-        <div className="w-full bg-gray-300 rounded-full h-4 mb-6">
-          <div
-            className="bg-blue-600 h-4 rounded-full transition-all"
-            style={{ width: `${progressPercentage}%` }}
-          ></div>
-        </div>
+            {/* صورة السؤال */}
+            {question.image && (
+              <div className="flex justify-center mb-6">
+                <img
+                  src={question.image}
+                  alt="Question Image"
+                  className="w-1/2 max-h-60 rounded-lg shadow"
+                />
+              </div>
+            )}
 
-        {/* If result is available, display it */}
-        {result ? (
-          <div className="bg-green-100 p-6 rounded-lg shadow-md text-center">
-            <h2 className="text-2xl font-bold text-green-700 mb-4">نتيجة الاختبار</h2>
-            <p className="text-lg text-gray-800">
-              {result.message || "لقد أكملت الاختبار!"}
-            </p>
-            <p className="text-lg font-bold text-gray-800 mt-4">
-              درجتك: {result.totalScore} / {result.maxScore}
-            </p>
-          </div>
-        ) : (
-          <>
-            {/* Question */}
-            <div className="bg-white p-6 rounded-lg shadow-md mb-6 space-y-4">
-              {/* Question Image */}
-              {question.image && (
-                <div className="flex justify-center">
-                  <img
-                    src={question.image}
-                    alt={`Question ${currentQuestion + 1}`}
-                    className="rounded-md shadow-md max-h-60"
-                  />
-                </div>
-              )}
-
-              {/* Question Text */}
-              <h2 className="text-lg font-bold text-gray-800">
-                {currentQuestion + 1}. {question.question}
-              </h2>
-
-              {/* Options */}
-              {question.options.map((option, optionIndex) => (
-                <label
-                  key={optionIndex}
-                  className="block mt-2 text-gray-600 cursor-pointer"
+            {/* الخيارات */}
+            <div className="grid grid-cols-2 gap-4">
+              {question.options.map((option, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleAnswerChange(index)}
+                  className={`py-3 px-4 text-lg font-semibold rounded-lg shadow transition duration-300 ${
+                    answers[currentQuestion] === index
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                  }`}
                 >
-                  <input
-                    type="radio"
-                    name={`question-${currentQuestion}`}
-                    value={optionIndex}
-                    checked={answers[currentQuestion] === optionIndex}
-                    onChange={() => handleAnswerChange(optionIndex)}
-                    className="mr-2"
-                  />
                   {option}
-                </label>
+                </button>
               ))}
             </div>
+          </div>
 
-            {/* Navigation Buttons */}
-            <div className="flex justify-between mb-4">
+          {/* أزرار التنقل */}
+          <div className="flex justify-between w-full max-w-4xl">
+            <button
+              onClick={handlePrevious}
+              className={`px-6 py-2 rounded-lg font-bold shadow ${
+                currentQuestion === 0
+                  ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
+              }`}
+              disabled={currentQuestion === 0}
+            >
+              السابق
+            </button>
+
+            {currentQuestion === test.questions.length - 1 ? (
               <button
-                type="button"
-                onClick={handlePrevious}
-                className={`px-6 py-2 rounded-lg shadow ${
-                  currentQuestion === 0
-                    ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                onClick={handleSubmit}
+                className={`px-6 py-2 rounded-lg font-bold shadow ${
+                  submitting
+                    ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+                    : "bg-green-500 text-white hover:bg-green-600"
+                }`}
+                disabled={submitting}
+              >
+                {submitting ? "جارٍ الإرسال..." : "إرسال الاختبار"}
+              </button>
+            ) : (
+              <button
+                onClick={handleNext}
+                className={`px-6 py-2 rounded-lg font-bold shadow ${
+                  answers[currentQuestion] === undefined
+                    ? "bg-gray-400 text-gray-700 cursor-not-allowed"
                     : "bg-blue-500 text-white hover:bg-blue-600"
                 }`}
-                disabled={currentQuestion === 0}
+                disabled={answers[currentQuestion] === undefined}
               >
-                السابق
+                التالي
               </button>
-
-              {currentQuestion === test.questions.length - 1 ? (
-                <button
-                  type="submit"
-                  onClick={handleSubmit}
-                  className={`px-6 py-2 rounded-lg shadow ${
-                    submitting
-                      ? "bg-gray-400 text-gray-700 cursor-not-allowed"
-                      : "bg-green-500 text-white hover:bg-green-600"
-                  }`}
-                  disabled={submitting}
-                >
-                  {submitting ? "جارٍ الإرسال..." : "إرسال الاختبار"}
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className={`px-6 py-2 rounded-lg shadow ${
-                    answers[currentQuestion] === undefined
-                      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                      : "bg-blue-500 text-white hover:bg-blue-600"
-                  }`}
-                  disabled={answers[currentQuestion] === undefined}
-                >
-                  التالي
-                </button>
-              )}
-            </div>
-          </>
-        )}
-      </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

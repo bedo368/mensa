@@ -62,9 +62,12 @@ export default function Dashboard() {
             <Link href="/" className="hover:text-gray-200">
               الصفحة الرئيسية
             </Link>
+            <div className="mx-5">
+
             <Link href="/admin/dashboard" className="hover:text-gray-200">
-              لوحة التحكم
             </Link>
+            </div>
+              لوحة التحكم
           </div>
         </div>
       </nav>

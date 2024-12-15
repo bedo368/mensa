@@ -63,7 +63,7 @@ export default function StudentTests() {
           </Link>
           <div className="flex space-x-4">
             <Link href="/student/tests" className="hover:text-gray-200">
-            الاختبات المتاحه 
+            الاختبارات المتاحه 
             </Link>
 
           </div>

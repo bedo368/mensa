@@ -135,7 +135,7 @@ export default function StudentTest() {
           <h1 className="text-3xl font-bold text-white mb-6">{test.title}</h1>
 
           {/* مربع السؤال */}
-          <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg text-center mb-8">
+          <div className="w-full max-w-4xl bg-white p-8 rounded-lg shadow-lg text-center mb-8 ">
             {/* نص السؤال */}
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               {currentQuestion + 1}. {question.question}

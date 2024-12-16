@@ -37,7 +37,7 @@ const router = useRouter(); // Initialize the router
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
           {/* Logo */}
           <h1 className="text-2xl font-extrabold text-blue-600">
-            <Link href="/">منصة تعليم الصف الرابع الابتدائي</Link>
+            <Link href="/">المنصة التعليمية لمنهج الدراسات رابعة ابتدائي</Link>
           </h1>
 
           {/* Large Screen Menu */}
@@ -153,7 +153,7 @@ const router = useRouter(); // Initialize the router
             أهلاً وسهلاً بكم في منصتنا!
           </h2>
           <p className="text-lg text-gray-800 mb-6 leading-relaxed">
-            منصة تعليم الصف الرابع الابتدائي صممت لجعل التعلم ممتعًا وسهلًا للأطفال. نقدم مجموعة
+            المنصة التعليمية لمنهج الدراسات رابعة ابتدائي صممت لجعل التعلم ممتعًا وسهلًا للأطفال. نقدم مجموعة
             متنوعة من الأسئلة التفاعلية والألعاب التعليمية التي تساعد على تطوير
             المهارات وتنمية المعرفة في بيئة مشوقة وآمنة.
           </p>

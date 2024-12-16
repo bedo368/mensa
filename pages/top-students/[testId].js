@@ -58,7 +58,7 @@ export default function TopStudents() {
       <nav className="bg-white shadow-md py-6 mb-8">
         <div className="container mx-auto flex justify-between items-center px-6">
           <h1 className="text-2xl font-extrabold text-blue-600">
-            <Link href="/">منصة تعليم الصف الرابع الابتدائي</Link>
+            <Link href="/">المنصة التعليمية لمنهج الدراسات رابعة ابتدائي</Link>
           </h1>
         </div>
       </nav>

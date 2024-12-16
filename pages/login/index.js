@@ -45,7 +45,7 @@ export default function Login() {
       <header className="bg-white text-white py-4 shadow-md">
         <div className="container mx-auto px-6 flex justify-between items-center">
           <Link href='/' >
-            <h1 className="text-xl font-bold" style={{color: "#1d4ed8"}}>منصة تعليم الصف الرابع الابتدائي</h1>
+            <h1 className="text-xl font-bold" style={{color: "#1d4ed8"}}>المنصة التعليمية لمنهج الدراسات رابعة ابتدائي</h1>
           </Link>
          
           <Link

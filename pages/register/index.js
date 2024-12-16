@@ -64,7 +64,7 @@ export default function Register() {
       <header className="bg-white text-white py-4 shadow-md">
         <div className="container mx-auto px-6 flex justify-between items-center">
           <Link href="/" >
-          <h1 className="text-xl font-bold" style={{color: "#3b82f6"}} >منصة تعليم الصف الرابع الابتدائي</h1>
+          <h1 className="text-xl font-bold" style={{color: "#3b82f6"}} >المنصة التعليمية لمنهج الدراسات رابعة ابتدائي</h1>
           </Link>
           <Link
             href="/login"
@@ -195,7 +195,7 @@ export default function Register() {
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-4">
         <div className="container mx-auto text-center">
-          <p className="text-sm">© 2024 منصة تعليم الصف الرابع الابتدائي. جميع الحقوق محفوظة.</p>
+          <p className="text-sm">© 2024 المنصة التعليمية لمنهج الدراسات رابعة ابتدائي. جميع الحقوق محفوظة.</p>
           <p className="text-sm mt-2">
             <Link href="/about" className="underline hover:text-gray-300">
               حول المنصة

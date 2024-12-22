@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import jwtDecode from "jsonwebtoken";
 import Lottie from "react-lottie";
-import starAnimation from "../../public/images/ani1.json";
+import starAnimation from "../../public/ani/ani1.json"; // Replace with your actual path
 
 export default function StudentTest() {
   const router = useRouter();

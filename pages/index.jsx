@@ -10,7 +10,6 @@ const router = useRouter();
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   console.log(user)
-  // قراءة JWT من localStorage عند تحميل الصفحة
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {

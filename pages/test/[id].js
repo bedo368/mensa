@@ -2,8 +2,19 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import jwtDecode from "jsonwebtoken";
-import Lottie from "react-lottie";
-import starAnimation from "./ani1.json"; 
+// 1) Remove the normal import of Lottie
+// import Lottie from "react-lottie";
+
+// 2) Import dynamic from next/dynamic
+import dynamic from "next/dynamic";
+
+// 3) Dynamically import Lottie with ssr: false
+const Lottie = dynamic(() => import("react-lottie"), {
+  ssr: false,
+});
+
+// You can still import your JSON locally
+import starAnimation from "./ani1.json";
 
 export default function StudentTest() {
   const router = useRouter();

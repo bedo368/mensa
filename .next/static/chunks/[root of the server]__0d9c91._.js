@@ -570,11 +570,10 @@ var _s = __turbopack_refresh__.signature();
 ;
 function Home() {
     _s();
-    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"])(); // Initialize the router
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$router$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [menuOpen, setMenuOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useState"])(false);
     console.log(user);
-    // قراءة JWT من localStorage عند تحميل الصفحة
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$index$2e$js__$5b$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Home.useEffect": ()=>{
             const token = localStorage.getItem("token");
@@ -609,12 +608,12 @@ function Home() {
                                     children: "المنصة التعليمية لمنهج الدراسات رابعة ابتدائي"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/index.jsx",
-                                    lineNumber: 40,
+                                    lineNumber: 39,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.jsx",
-                                lineNumber: 39,
+                                lineNumber: 38,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -627,7 +626,7 @@ function Home() {
                                             children: "تسجيل الدخول"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/index.jsx",
-                                            lineNumber: 47,
+                                            lineNumber: 46,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -636,7 +635,7 @@ function Home() {
                                             children: "التسجيل"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/index.jsx",
-                                            lineNumber: 53,
+                                            lineNumber: 52,
                                             columnNumber: 17
                                         }, this)
                                     ]
@@ -651,7 +650,7 @@ function Home() {
                                                     children: user.name
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/index.jsx",
-                                                    lineNumber: 69,
+                                                    lineNumber: 68,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -667,29 +666,29 @@ function Home() {
                                                         d: "M19 9l-7 7-7-7"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/index.jsx",
-                                                        lineNumber: 78,
+                                                        lineNumber: 77,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/index.jsx",
-                                                    lineNumber: 70,
+                                                    lineNumber: 69,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/index.jsx",
-                                            lineNumber: 65,
+                                            lineNumber: 64,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 64,
+                                        lineNumber: 63,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.jsx",
-                                lineNumber: 44,
+                                lineNumber: 43,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -710,28 +709,28 @@ function Home() {
                                             d: "M4 6h16M4 12h16M4 18h16"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/index.jsx",
-                                            lineNumber: 105,
+                                            lineNumber: 104,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 97,
+                                        lineNumber: 96,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/index.jsx",
-                                    lineNumber: 93,
+                                    lineNumber: 92,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.jsx",
-                                lineNumber: 92,
+                                lineNumber: 91,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/index.jsx",
-                        lineNumber: 37,
+                        lineNumber: 36,
                         columnNumber: 9
                     }, this),
                     menuOpen && !user && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -745,7 +744,7 @@ function Home() {
                                     children: "تسجيل الدخول"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/index.jsx",
-                                    lineNumber: 120,
+                                    lineNumber: 119,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -754,24 +753,24 @@ function Home() {
                                     children: "التسجيل"
                                 }, void 0, false, {
                                     fileName: "[project]/pages/index.jsx",
-                                    lineNumber: 126,
+                                    lineNumber: 125,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/index.jsx",
-                            lineNumber: 119,
+                            lineNumber: 118,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/index.jsx",
-                        lineNumber: 117,
+                        lineNumber: 116,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/index.jsx",
-                lineNumber: 36,
+                lineNumber: 35,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -785,12 +784,12 @@ function Home() {
                             className: "rounded-lg shadow-lg transform hover:scale-105 transition"
                         }, void 0, false, {
                             fileName: "[project]/pages/index.jsx",
-                            lineNumber: 143,
+                            lineNumber: 142,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/pages/index.jsx",
-                        lineNumber: 142,
+                        lineNumber: 141,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -801,7 +800,7 @@ function Home() {
                                 children: "أهلاً وسهلاً بكم في منصتنا!"
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.jsx",
-                                lineNumber: 152,
+                                lineNumber: 151,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -809,19 +808,19 @@ function Home() {
                                 children: "المنصة التعليمية لمنهج الدراسات رابعة ابتدائي صممت لجعل التعلم ممتعًا وسهلًا للأطفال. نقدم مجموعة متنوعة من الأسئلة التفاعلية والألعاب التعليمية التي تساعد على تطوير المهارات وتنمية المعرفة في بيئة مشوقة وآمنة."
                             }, void 0, false, {
                                 fileName: "[project]/pages/index.jsx",
-                                lineNumber: 155,
+                                lineNumber: 154,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/index.jsx",
-                        lineNumber: 151,
+                        lineNumber: 150,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/index.jsx",
-                lineNumber: 140,
+                lineNumber: 139,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -832,7 +831,7 @@ function Home() {
                         children: "مميزات منصتنا"
                     }, void 0, false, {
                         fileName: "[project]/pages/index.jsx",
-                        lineNumber: 165,
+                        lineNumber: 164,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -847,7 +846,7 @@ function Home() {
                                         className: "w-16 mx-auto mb-4"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 170,
+                                        lineNumber: 169,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -855,7 +854,7 @@ function Home() {
                                         children: "أسئلة ممتعة"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 175,
+                                        lineNumber: 174,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -863,13 +862,13 @@ function Home() {
                                         children: "أسئلة تعليمية تفاعلية تناسب مختلف الأعمار والاهتمامات."
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 178,
+                                        lineNumber: 177,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/index.jsx",
-                                lineNumber: 169,
+                                lineNumber: 168,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -881,7 +880,7 @@ function Home() {
                                         className: "w-16 mx-auto mb-4"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 183,
+                                        lineNumber: 182,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -889,7 +888,7 @@ function Home() {
                                         children: "نتائج فورية"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 188,
+                                        lineNumber: 187,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -897,13 +896,13 @@ function Home() {
                                         children: "احصل على نتائج فورية تساعدك على تحسين مستواك."
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 191,
+                                        lineNumber: 190,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/index.jsx",
-                                lineNumber: 182,
+                                lineNumber: 181,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -915,7 +914,7 @@ function Home() {
                                         className: "w-16 mx-auto mb-4"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 196,
+                                        lineNumber: 195,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -923,7 +922,7 @@ function Home() {
                                         children: "تجربة مبهجة"
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 201,
+                                        lineNumber: 200,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -931,31 +930,31 @@ function Home() {
                                         children: "واجهة سهلة ومشوقة للأطفال لتعلم ممتع ومفيد."
                                     }, void 0, false, {
                                         fileName: "[project]/pages/index.jsx",
-                                        lineNumber: 204,
+                                        lineNumber: 203,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/pages/index.jsx",
-                                lineNumber: 195,
+                                lineNumber: 194,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/pages/index.jsx",
-                        lineNumber: 168,
+                        lineNumber: 167,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/pages/index.jsx",
-                lineNumber: 164,
+                lineNumber: 163,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/pages/index.jsx",
-        lineNumber: 34,
+        lineNumber: 33,
         columnNumber: 5
     }, this);
 }

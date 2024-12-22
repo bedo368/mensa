@@ -5,6 +5,7 @@
   "/student/tests": "pages/student/tests.js",
   "/api/tests": "pages/api/tests.js",
   "/test/[id]": "pages/test/[id].js",
+  "/_error": "pages/_error.js",
   "/api/tests/[id]": "pages/api/tests/[id].js",
   "/api/submit-test": "pages/api/submit-test.js"
 }

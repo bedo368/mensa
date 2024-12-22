@@ -6,7 +6,7 @@
   "rootMainFiles": [],
   "pages": {
     "/test/[id]": [
-      "static/chunks/[root of the server]__bbbbae._.js",
+      "static/chunks/[root of the server]__c99cf1._.js",
       "static/chunks/node_modules_next_dist_compiled_crypto-browserify_index_429dd1.js",
       "static/chunks/node_modules_next_dist_compiled_f3958c._.js",
       "static/chunks/node_modules_next_dist_shared_lib_d8528f._.js",
@@ -19,7 +19,7 @@
       "static/chunks/node_modules_lottie-web_build_player_lottie_9688ff.js",
       "static/chunks/node_modules_427c99._.js",
       "static/chunks/pages_test_[id]_5771e1.js",
-      "static/chunks/pages_test_[id]_7ac1ff.js"
+      "static/chunks/pages_test_[id]_35e7d5.js"
     ]
   },
   "ampFirstPages": []

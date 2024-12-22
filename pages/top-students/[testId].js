@@ -4,28 +4,28 @@ import Link from "next/link";
 
 export default function TopStudents() {
   const router = useRouter();
-  const { testId } = router.query; // استخراج معرّف الاختبار من عنوان URL
+  const { testId } = router.query;
   const [students, setStudents] = useState([]);
-  const [testName, setTestName] = useState(""); // لتخزين اسم الاختبار
-  const [maxScore, setMaxScore] = useState(0); // لتخزين الدرجة النهائية للاختبار
+  const [testName, setTestName] = useState("");
+  const [maxScore, setMaxScore] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // جلب الطلاب واسم الاختبار
+  // Fetch top students and test info
   useEffect(() => {
     if (testId) {
       const fetchTopStudents = async () => {
         try {
-          // جلب بيانات الاختبار
+          // 1) Fetch test data
           const testResponse = await fetch(`/api/tests/${testId}`);
           if (testResponse.ok) {
             const testData = await testResponse.json();
-            setTestName(testData.title); // تخزين اسم الاختبار
-            setMaxScore(testData.questions.length || 0); // تخزين الدرجة النهائية
+            setTestName(testData.title || "");
+            setMaxScore(testData.questions.length || 0);
           } else {
             console.error("فشل في جلب بيانات الاختبار.");
           }
 
-          // جلب بيانات الطلاب
+          // 2) Fetch students data
           const studentsResponse = await fetch(`/api/top-students/${testId}`);
           if (studentsResponse.ok) {
             const studentsData = await studentsResponse.json();
@@ -46,77 +46,122 @@ export default function TopStudents() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-100 to-gray-300">
-        <p className="text-xl font-bold text-gray-700">جارٍ تحميل بيانات الطلاب...</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-purple-300 to-purple-500">
+        <p className="text-xl font-bold text-white">جارٍ تحميل بيانات الطلاب...</p>
       </div>
     );
   }
 
+  // -------------------------------------------------------------
+  // OPTIONAL: A helper function to pick "row colors" like the image
+  // -------------------------------------------------------------
+  const getRowBgColor = (index) => {
+    // You can vary colors for top 3 or just cycle:
+    const colors = [
+      "bg-yellow-100",  // 1st
+      "bg-blue-100",    // 2nd
+      "bg-red-100",     // 3rd
+      "bg-gray-100",    // 4th+
+    ];
+    return colors[index] || colors[3];
+  };
+
+  // -------------------------------------------------------------
+  // OPTIONAL: A helper to show star icons. In the screenshot, 
+  // each student got up to 3 stars. You can adjust logic as needed.
+  // -------------------------------------------------------------
+  const getStarRating = (score, maxScore) => {
+    // Example logic for up to 3 stars:
+    const pct = (score / maxScore) * 100;
+    if (pct >= 95) return "⭐⭐⭐"; 
+    if (pct >= 90) return "⭐⭐";  
+    if (pct > 0)   return "⭐";   
+    return ""; 
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200">
-      {/* شريط التنقل */}
-      <nav className="bg-white shadow-md py-6 mb-8">
-        <div className="container mx-auto flex justify-between items-center px-6">
-          <h1 className="text-2xl font-extrabold text-blue-600">
-            <Link href="/">المنصة التعليمية لمنهج الدراسات رابعة ابتدائي</Link>
-          </h1>
+    <div className="min-h-screen flex flex-col items-center justify-center 
+                    bg-gradient-to-b from-purple-400 to-purple-600 p-4">
+      {/* Main Card */}
+      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6 relative">
+        {/* Trophy icon up top (like the screenshot) */}
+        <div className="flex items-center justify-center mb-3">
+          <div className="bg-yellow-300 rounded-full p-3">
+            {/* Emoji trophy or any icon of your choice */}
+            <span className="text-2xl">🏆</span>
+          </div>
         </div>
-      </nav>
 
-      {/* المحتوى الرئيسي */}
-      <div className="container mx-auto px-4">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
-            أفضل 10 طلاب في اختبار: <span className="text-blue-600">{testName || "غير معروف"}</span>
-          </h1>
+        {/* Main Title & Subtitle */}
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-purple-700 mb-1">
+          {testName || "Space Quiz Champions!"}
+        </h1>
+        <p className="text-center text-gray-500 text-sm mb-6">
+          Our Amazing Star Students!
+        </p>
 
-          {students.length > 0 ? (
-           <div className="overflow-x-auto">
-           <table className="table-auto w-full border-collapse border border-gray-300 rounded-lg">
-             <thead>
-               <tr className="bg-gray-200 text-black"> {/* تم تغيير لون النص إلى الأسود */}
-                 <th className="p-4 text-sm md:text-base border border-gray-300">#</th>
-                 <th className="p-4 text-sm md:text-base border border-gray-300">اسم الطالب</th>
-                 <th className="p-4 text-sm md:text-base border border-gray-300">الدرجة</th>
-                 <th className="p-4 text-sm md:text-base border border-gray-300">الدرجة النهائية</th>
-               </tr>
-             </thead>
-             <tbody>
-               {students.map((student, index) => (
-                 <tr
-                   key={student._id}
-                   className={`${
-                     index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                   } hover:bg-gray-200`}
-                 >
-                   <td className="p-4 text-center text-sm md:text-base border border-gray-300 text-black">
-                     {/* تم تغيير لون النص إلى الأسود */}
-                     {index + 1}
-                   </td>
-                   <td className="p-4 text-center text-sm md:text-base border border-gray-300 text-black">
-                     {/* تم تغيير لون النص إلى الأسود */}
-                     {student.studentId?.name || "غير معروف"}
-                   </td>
-                   <td className="p-4 text-center text-sm md:text-base border border-gray-300 text-black">
-                     {/* تم تغيير لون النص إلى الأسود */}
-                     {student.totalScore}
-                   </td>
-                   <td className="p-4 text-center text-sm md:text-base border border-gray-300 text-black">
-                     {/* تم تغيير لون النص إلى الأسود */}
-                     {maxScore}
-                   </td>
-                 </tr>
-               ))}
-             </tbody>
-           </table>
-         </div>
-         
-          ) : (
-            <p className="text-center text-lg font-semibold text-gray-700">
-              لا توجد بيانات لهذا الاختبار.
-            </p>
-          )}
-        </div>
+        {/* Students List */}
+        {students.length > 0 ? (
+          <div className="flex flex-col gap-3">
+            {students.map((student, index) => {
+              const bgColor = getRowBgColor(index);
+              const studentName = student.studentId?.name || "غير معروف";
+              const scoreStars = getStarRating(student.totalScore, maxScore);
+
+              return (
+                <div
+                  key={student._id}
+                  className={`rounded-lg p-4 flex items-center justify-between ${bgColor}`}
+                >
+                  <div className="flex items-center gap-2">
+                    {/* Example medal icon by rank (optional) */}
+                    {index === 0 ? (
+                      <span className="text-2xl">🥇</span>
+                    ) : index === 1 ? (
+                      <span className="text-2xl">🥈</span>
+                    ) : index === 2 ? (
+                      <span className="text-2xl">🥉</span>
+                    ) : (
+                      <span className="text-2xl">⭐</span>
+                    )}
+                    <p className="font-semibold text-gray-800">
+                      {studentName}
+                    </p>
+                  </div>
+                  {/* Score + Stars */}
+                  <div className="text-right">
+                    <p className="text-sm text-gray-700">
+                      Score: {student.totalScore}/{maxScore}
+                    </p>
+                    {/* Star rating (optional) */}
+                    <p className="text-yellow-500 font-semibold">
+                      {scoreStars}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="text-center text-lg font-semibold text-gray-700">
+            لا توجد بيانات لهذا الاختبار.
+          </p>
+        )}
+
+        {/* A bottom message like screenshot */}
+        <p className="text-center text-sm mt-6 text-gray-500">
+          Keep learning and reaching for the stars!
+        </p>
+      </div>
+
+      {/* Link back to home or tests, if desired */}
+      <div className="mt-6">
+        <Link href="/">
+          <div className="cursor-pointer bg-white text-purple-600 px-4 py-2 
+                          rounded-md shadow hover:bg-purple-50 font-semibold">
+            العودة للصفحة الرئيسية
+          </div>
+        </Link>
       </div>
     </div>
   );

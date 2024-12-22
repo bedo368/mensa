@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,12 +23,24 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "pages/index.jsx", "pages/_app.jsx"],
-  "exclude": ["node_modules"],
- "rules": {
-  "@typescript-eslint/no-unused-vars": "off",
-    "@next/next/no-img-element": "off"}
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "pages/index.jsx",
+    "pages/_app.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
+    "@next/next/no-img-element": "off"
+  }
 }

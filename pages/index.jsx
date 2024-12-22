@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 
 export default function Home() {
-const router = useRouter(); // Initialize the router
+const router = useRouter(); 
 
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);

@@ -1,1 +1,9 @@
-{}
+{
+  "pages/test/[id].js -> react-lottie": {
+    "id": "pages/test/[id].js -> react-lottie",
+    "files": [
+      "static/chunks/node_modules_b9b6b2._.js",
+      "static/chunks/node_modules_react-lottie_dist_index_bd64ad.js"
+    ]
+  }
+}
